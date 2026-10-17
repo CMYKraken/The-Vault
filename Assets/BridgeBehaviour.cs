@@ -7,12 +7,16 @@ public class BridgeBehaviour : MonoBehaviour
     public uint length = 10;
     
     [Header("Object references")]
-    public GameObject[] bridgeItems; // bridge items is used as reference to each item that will make up the bridge
+    public BridgeBlockBehaviour[] bridgeItems; // bridge items is used as reference to each item that will make up the bridge
     
     private Vector3[,] _positions;
     
     void Start()
     {
+        var transformToBridge = transform.position;
+        
+        bridgeItems = FindObjectsByType<BridgeBlockBehaviour>();
+        
         _positions = new Vector3[width,length];
         
         for (int i = 0; i < width; i++)
@@ -20,12 +24,8 @@ public class BridgeBehaviour : MonoBehaviour
             for (int j = 0; j < length; j++)
             {
                 _positions[i,j] = new Vector3(i,0,j);
+                bridgeItems[i*length+j].targetPosition = transformToBridge + _positions[i,j];
             }
-        }
-
-        foreach (var VARIABLE in _positions)
-        {
-            print(VARIABLE);
         }
     }
 
