@@ -13,8 +13,6 @@ public class BridgeBehaviour : MonoBehaviour
     
     void Start()
     {
-        var transformToBridge = transform.position;
-        
         bridgeItems = FindObjectsByType<BridgeBlockBehaviour>();
         
         _positions = new Vector3[width,length];
@@ -24,7 +22,7 @@ public class BridgeBehaviour : MonoBehaviour
             for (int j = 0; j < length; j++)
             {
                 _positions[i,j] = new Vector3(i,0,j);
-                bridgeItems[i*length+j].targetPosition = transformToBridge + _positions[i,j];
+                bridgeItems[i*length+j].targetTransform.position = transform.position + _positions[i,j];
             }
         }
     }
