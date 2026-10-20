@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BridgeBlockBehaviour : MonoBehaviour
 {
@@ -11,5 +9,6 @@ public class BridgeBlockBehaviour : MonoBehaviour
         if (!active) return;
         
         transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetTransform.rotation, Time.deltaTime * 5f);
     }
 }

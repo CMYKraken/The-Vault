@@ -7,29 +7,24 @@ public class BridgeBehaviour : MonoBehaviour
     public uint length = 10;
     
     [Header("Object references")]
-    public BridgeBlockBehaviour[] bridgeItems; // bridge items is used as reference to each item that will make up the bridge
-    
-    private Vector3[,] _positions;
+    private BridgePlatform[,] _bridgePlatforms;
     
     void Start()
     {
-        bridgeItems = FindObjectsByType<BridgeBlockBehaviour>();
-        
-        _positions = new Vector3[width,length];
+        _bridgePlatforms = new BridgePlatform[width, length];
         
         for (int i = 0; i < width; i++)
         {
             for (int j = 0; j < length; j++)
             {
-                _positions[i,j] = new Vector3(i,0,j);
-                bridgeItems[i*length+j].targetTransform.position = transform.position + _positions[i,j];
+                //Create new bridge platform 
+                var newPlatform = new GameObject("BridgePlatform" + i +" , " + j)
+                    .AddComponent<BridgePlatform>();
+                newPlatform.transform.position = new Vector3(i,0,j);
+                
+                _bridgePlatforms[i, j] = newPlatform;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
