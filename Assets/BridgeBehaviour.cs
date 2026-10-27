@@ -3,6 +3,7 @@ using UnityEngine;
 public class BridgeBehaviour : MonoBehaviour
 {
     [Header("Bridge dimensions")]
+    public float spacing = 1; 
     public uint width = 2;
     public uint length = 10;
     
@@ -20,7 +21,7 @@ public class BridgeBehaviour : MonoBehaviour
                 //Create new bridge platform 
                 var newPlatform = new GameObject("BridgePlatform" + i +" , " + j)
                     .AddComponent<BridgePlatform>();
-                newPlatform.transform.position = new Vector3(i,0,j);
+                newPlatform.transform.position = new Vector3(i,0,j) * spacing;
                 
                 _bridgePlatforms[i, j] = newPlatform;
             }
