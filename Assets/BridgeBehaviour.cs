@@ -38,6 +38,8 @@ public class BridgeBehaviour : MonoBehaviour
 
         foreach (var platform in _bridgePlatforms)
         {
+            while(_blocks.Peek().segments.Count == 0) _blocks.Pop();
+            
             var diff = _blocks.Peek().segments.Count - segmentsPerPlatform;
             if (diff < 0)
             {
@@ -50,6 +52,7 @@ public class BridgeBehaviour : MonoBehaviour
                 platform.AddSegments(_blocks.Peek().takeSegments(segmentsPerPlatform));
             }
         }
+        
         
     }
     
