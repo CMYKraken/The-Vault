@@ -30,6 +30,8 @@ public class BridgeBehaviour : MonoBehaviour
                 _bridgePlatforms[i, j] = newPlatform;
             }
         }
+        PopluatePlatforms();
+        ActivatePlatforms();
     }
 
     private void PopluatePlatforms()
@@ -56,4 +58,10 @@ public class BridgeBehaviour : MonoBehaviour
         
     }
     
+    private void ActivatePlatforms()
+    {
+        foreach (var platform in _bridgePlatforms)
+            foreach (var segement in platform.segments )
+                segement.active = true;
+    }
 }
