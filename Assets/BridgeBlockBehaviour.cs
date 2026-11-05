@@ -1,14 +1,39 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BridgeBlockBehaviour : MonoBehaviour
 {
-    public Transform targetTransform;
-    public bool active;
-    private void Update()
+    public float distance = 1; 
+    public List<BridgePlatformSegmentBehaviour> segments;
+    public List<Vector3> segmentDirections;
+    
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        if (!active) return;
-        
-        transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, Time.deltaTime * 5f);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetTransform.rotation, Time.deltaTime * 5f);
+        segments = new List<BridgePlatformSegmentBehaviour>(GetComponentsInChildren<BridgePlatformSegmentBehaviour>());
+        for (int i =  0; i < segments.Count; i++)
+        {
+            segmentDirections.Add(segments[i].transform.localPosition);
+        }
     }
+
+    // Update is called once per frame
+    void Update()
+    {
+        for (int i = 0; i < segments.Count; i++)
+        {
+            segments[i].transform.localPosition = segmentDirections[i]*distance;
+        }
+    }
+    
+    public BridgePlatformSegmentBehaviour[] takeSegments(int numSegments)
+    {
+        List<BridgePlatformSegmentBehaviour> output = new List<BridgePlatformSegmentBehaviour>();
+        for (int i = 0; i <= numSegments; i++)
+        {
+            output.Add(segments[0]);
+            segments.RemoveAt(0);
+        }
+        return output.ToArray();
+    } 
 }
