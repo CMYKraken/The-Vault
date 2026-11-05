@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BridgePlatform : MonoBehaviour
 {
-    [SerializeField] private List<BridgePlatformSegmentBehaviour> segments;
+    public List<BridgePlatformSegmentBehaviour> segments;
     private readonly Quaternion[] _rotations =  new Quaternion[4];
     private void Awake()
     {
