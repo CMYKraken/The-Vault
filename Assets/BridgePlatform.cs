@@ -17,7 +17,8 @@ public class BridgePlatform : MonoBehaviour
     public void AddSegment(BridgePlatformSegmentBehaviour segment)
     {
         segments.Add(segment);
-        segment.transform.rotation = _rotations[segments.IndexOf(segment)];
+        segment.targetPosition = transform.position;
+        segment.targetRotation = _rotations[segments.IndexOf(segment)];
     }
 
     public void AddSegments(BridgePlatformSegmentBehaviour[] addedSegments)
