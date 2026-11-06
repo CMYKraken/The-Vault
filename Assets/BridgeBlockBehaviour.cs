@@ -29,7 +29,7 @@ public class BridgeBlockBehaviour : MonoBehaviour
     public BridgePlatformSegmentBehaviour[] takeSegments(int numSegments)
     {
         List<BridgePlatformSegmentBehaviour> output = new List<BridgePlatformSegmentBehaviour>();
-        for (int i = 0; i <= numSegments; i++)
+        for (int i = 0; i < numSegments; i++)
         {
             output.Add(segments[0]);
             segments.RemoveAt(0);
